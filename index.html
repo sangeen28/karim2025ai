@@ -31,8 +31,7 @@
 
   <style>
    /* Custom Styles for Image Gallery */
-/* Custom Styles for Image Gallery */
-.image-gallery {
+    .image-gallery {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -41,6 +40,7 @@
       max-height: 1500px;
       margin-top: 20px;
       overflow: hidden;
+      position: relative;
     }
 
     .image-container {
@@ -63,17 +63,61 @@
       font-weight: bold;
     }
 
+    /* Navigation arrows */
+    .arrow-left, .arrow-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+    }
 
+    .arrow-left {
+      left: 10px;
+    }
 
-      /* Enhanced Button Design */
-      .scroll-button {
+    .arrow-right {
+      right: 10px;
+    }
+
+    .arrow-left:hover, .arrow-right:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Citation Section */
+    .cite-section {
+      margin-top: 50px;
+      text-align: left;
+    }
+
+    .cite-section h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .cite-section pre {
+      font-size: 16px;
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* Custom button styling */
+    .scroll-button {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
         padding: 18px 35px;
         cursor: pointer;
         border-radius: 25px;
-        margin-top: 25px;
         font-size: 18px;
         font-weight: 600;
         letter-spacing: 0.5px;
@@ -97,82 +141,6 @@
         transform: translateY(1px);
         box-shadow: 0 2px 10px rgba(118, 75, 162, 0.3);
     }
-
-    .scroll-button::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.5s ease;
-    }
-
-    .scroll-button:hover::after {
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    .scroll-button i {
-        transition: transform 0.3s ease;
-    }
-
-    .scroll-button:hover i {
-        transform: translateX(3px);
-    }
-
-    /* Center the section */
-    .section {
-      text-align: center;
-    }
-
-    
-
-   /* Centering Table Container */
-.table-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  width: 100%; /* Ensure full width */
-}
-
-/* Ensure the table takes the proper width */
-table {
-  width: 100%; /* Let the table take the full width of its container */
-  max-width: 100%; /* Prevent it from overflowing */
-  table-layout: fixed; /* Ensure the table columns are evenly distributed */
-}
-
-/* Title styling for table */
-.table-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
- /* Citation Section */
- .cite-section {
-      margin-top: 50px;
-      text-align: center;
-    }
-
-    .cite-section h2 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .cite-section pre {
-      font-size: 16px;
-      background-color: #f4f4f4;
-      padding: 15px;
-      border-radius: 5px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
   </style>
 
   <script>
@@ -185,6 +153,10 @@ table {
       { src: "static/images/Interaction between AI agents and users in a blockchain-based DeFi environment.jpg", name: "Interaction between AI agents and users in a blockchain-based DeFi environment" },
       { src: "static/images/DAO leverages AI agents for governance and automation.jpg", name: "DAO leverages AI agents for governance and automation" },
       { src: "static/images/Blockchain and AI agent-enabled supply chain framework.jpg", name: "Blockchain and AI agent-enabled supply chain framework" },
+      { src: "static/images/Comparison between our work and the existing surveys.png", name: "Comparison between our work and the existing surveys" },
+      { src: "static/images/Summary of the existing research in terms of AI agents for blockchain.jpg", name: "Summary of the existing research in terms of AI agents for blockchain" },
+      { src: "static/images/Summary of the existing research in terms of blockchain for AI agents.jpg", name: "Summary of the existing research in terms of blockchain for AI agents" },
+      { src: "static/images/Summary of application and use case scenarios.jpg", name: "Summary of application and use case scenarios" },
       { src: "static/images/Hybrid quantum computing framework integrating AI agents.jpg", name: "Hybrid quantum computing framework integrating AI agents" }
     ];
 
@@ -199,6 +171,25 @@ table {
       currentImageIndex = (currentImageIndex + 1) % images.length;
 
       // Show the next image
+      const image = document.getElementById('currentImage');
+      image.src = images[currentImageIndex].src;
+      image.style.display = 'block';
+
+      // Show the name below the image
+      const imageName = document.getElementById('imageName');
+      imageName.textContent = images[currentImageIndex].name;
+      imageName.style.display = 'block';
+    }
+
+    function showPreviousImage() {
+      // Hide the current image
+      document.getElementById('currentImage').style.display = 'none';
+      document.getElementById('imageName').style.display = 'none';
+
+      // Decrement the image index and loop back to the last image if needed
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+
+      // Show the previous image
       const image = document.getElementById('currentImage');
       image.src = images[currentImageIndex].src;
       image.style.display = 'block';
@@ -230,20 +221,7 @@ table {
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">AI Agents Meet Blockchain: A Survey on Secure and Scalable Collaboration for Multi-Agents</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Md Monjurul Karim<sup>1</sup>,</span>
-            <span class="author-block">Dong Hoang Van<sup>1</sup>,</span>
-            <span class="author-block">Sangeen Khan<sup>2</sup>,</span>
-            <span class="author-block">Qiang Qu<sup>1</sup>,</span>
-            <span class="author-block">Yaroslav Kholodov<sup>3</sup></span>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, Shenzhen 518055, China<sup>1</sup><br>
-              Department of Communication Engineering, University of Science and Technology Beijing, Beijing 100083, China <sup>2</sup><br>
-              Faculty of Computer Science and Engineering, Innopolis University, 420500 Innopolis, Russia<sup>3</sup></span>
-          </div>
-
+          <h2 class="subtitle">Empowering Decentralized Intelligence in the Web3 Era</h2>
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
@@ -251,6 +229,14 @@ table {
                 class="external-link button is-normal is-rounded is-dark">
                 <span class="icon"><i class="fas fa-file-pdf"></i></span>
                 <span>Full Text</span>
+                </a>
+              </span>
+              <!-- New button added next to the Full Text button -->
+              <span class="link-block">
+                <a href="http://example.com" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-link"></i></span>
+                <span>PPT</span>
                 </a>
               </span>
             </div>
@@ -276,99 +262,47 @@ table {
 </section>
 <!-- End paper abstract -->
 
-<!-- Table Section -->
-<section class="section">
-  <div class="container is-max-desktop table-container">
-    <div class="column is-10">
-      <h2 class="title is-3 table-title">Comparison between our work and the existing surveys</h2>
-      <table class="table is-bordered is-striped is-narrow is-hoverable">
-        <thead>
-          <tr>
-            <th>Features</th>
-            <th>[8]</th>
-            <th>[23]</th>
-            <th>[24]</th>
-            <th>[26]</th>
-            <th>[27]</th>
-            <th>[28]</th>
-            <th>Ours</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Blockchain enhances AI’s trust</td>
-            <td></td>
-            <td>✓</td>
-            <td></td>
-            <td>✓</td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>Blockchain elevates AI’s performance</td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>AI increases blockchain’s efficiency</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>AI enhances blockchain’s security</td>
-            <td>✓</td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>Empirical application scenarios</td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td>✓</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<!-- End Table Section -->
-
 <!-- Image Gallery Section -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!--<h2 class="title is-3">Image Gallery</h2-->
     <div class="image-gallery">
       <div class="image-container">
         <img id="currentImage" alt="Gallery Image">
         <div class="image-name" id="imageName">Image Name</div>
       </div>
+      <!-- Left and Right Arrow buttons -->
+      <button class="arrow-left" onclick="showPreviousImage()">&#10094;</button>
+      <button class="arrow-right" onclick="showNextImage()">&#10095;</button>
     </div>
-    <!-- Scroll Button -->
-    <button class="scroll-button" onclick="showNextImage()">Next</button>
   </div>
 </section>
 <!-- End Image Gallery Section -->
 
+<!-- Brief Summary Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Brief Summary</h2>
+    <p style="text-align:justify";>This paper presents a comprehensive survey on the integration of AI agents and blockchain, addressing the challenges and opportunities in secure and scalable multi-agent collaboration. The novelty of this study lies in its exploration of the intersection between decentralized AI (DeAI) and blockchain, emphasizing how AI agents enhance blockchain-based ecosystems through decision-making, consensus optimization, and autonomous collaboration. Unlike previous works that focus on either blockchain security or AI trustworthiness in isolation, this survey offers an integrated perspective on their synergistic relationship.</p><br>
+    <p style="text-align:justify";>The paper solves key challenges related to <b>scalability and privacy</b> in decentralized environments. It highlights how AI agents can improve the efficiency of blockchain consensus mechanisms, reduce transaction latency, and optimize resource allocation. Furthermore, the study discusses blockchain’s role in ensuring secure agent interactions through decentralized governance, immutable audit trails, and cryptographic safeguards. By categorizing various applications across domains such as <b>Web3, DeFi, asset management, and autonomous systems </b>, the survey provides insights into real-world implementations of AI-agent-enhanced blockchain solutions.</p><br>
+    <p style="text-align:justify";>In terms of contributions, the paper systematically evaluates AI agents' impact on blockchain scalability, security, 
+      and operational efficiency. It introduces <b>zero-shot learning for AI-driven blockchain operations</b>, explores 
+      novel <b>intelligent consensus mechanisms like Proof-of-Thought (PoT) and Proof-of-Compute (PoC)</b>, 
+      and discusses practical use cases in <b>DeFi governance, DAO automation, and decentralized supply chain management</b>. 
+      The paper also identifies <b>future directions</b>, including decentralized quantum computing, privacy-preserving AI-agent 
+      coordination, and self-sovereign AI agent governance.</p>
+  </div>
+</section>
 
+<!-- New Centered Image Section below Brief Summary -->
+<section class="section">
+  <div class="container is-max-desktop" style="text-align: center;">
+    <img src="static/images/graphic abs.png" alt="Center Image" style="max-width:100%; height:auto; border-radius: 5px;">
+    <figcaption>Graphical abstract</figcaption>
+  </div>
+</section>
+<!-- End New Centered Image Section -->
+
+<!-- Cite Our Work Section -->
 <section class="section cite-section">
   <h2>Cite Our Work</h2>
   <pre>@article{karim2025ai,
@@ -381,6 +315,23 @@ table {
   }</pre>
 </section>
 
+<!-- New Centered Image Section below Brief Summary -->
+<section class="section">
+  <div class="container is-max-desktop" style="text-align: center;">
+    <div class="columns is-mobile">
+      <div class="column is-one-third">
+        <img src="static/images/siat.jpg" alt="Image 1" style="max-width:100%; border-radius: 5px;">
+      </div>
+      <div class="column is-one-third">
+        <img src="static/images/ustb.png" alt="Image 2" style="max-width:100%; border-radius: 5px;">
+      </div>
+      <div class="column is-one-third">
+        <img src="static/images/innopolis.png" alt="Image 3" style="max-width:100%; margin-top: 35px; border-radius: 5px;">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End New Centered Image Section -->
 
 
 <footer class="footer">
