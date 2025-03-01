@@ -9,14 +9,12 @@
   <meta property="og:image" content="static/image/your_banner_image.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
-
   <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
   <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
   <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>AI Agents Meet Blockchain: A Survey on Secure and Scalable Collaboration for Multi-Agents</title>
   <link rel="icon" type="image/x-icon" href="static/images/siat.jpg">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -24,18 +22,16 @@
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/index.js"></script>
-
   <style>
-   /* Custom Styles for Image Gallery */
+    /* Custom Styles for Image Gallery */
     .image-gallery {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column; /* Stack image and name vertically */
+      flex-direction: column;
       height: auto;
       max-height: 1500px;
       margin-top: 20px;
@@ -50,20 +46,20 @@
 
     .image-gallery img {
       max-width: 100%;
-      height: auto; /* Ensure images scale proportionally */
-      max-height: 100%; /* Prevent images from exceeding the container's height */
+      height: auto;
+      max-height: 100%;
       border-radius: 5px;
-      display: none; /* Hide all images by default */
+      display: none;
     }
 
     .image-name {
       font-size: 16px;
       color: #333;
-      margin-top: 10px; /* Space between the image and name */
+      margin-top: 10px;
       font-weight: bold;
     }
 
-    /* Navigation arrows */
+    /* Navigation arrows positioned outside the image */
     .arrow-left, .arrow-right {
       position: absolute;
       top: 50%;
@@ -75,6 +71,7 @@
       border: none;
       border-radius: 50%;
       font-size: 24px;
+      z-index: 10;
     }
 
     .arrow-left {
@@ -110,164 +107,175 @@
       word-wrap: break-word;
     }
 
-    /* Custom button styling */
+    /* Custom button styling (if needed elsewhere) */
     .scroll-button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        padding: 18px 35px;
-        cursor: pointer;
-        border-radius: 25px;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        box-shadow: 0 4px 15px rgba(118, 75, 162, 0.25);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 18px 35px;
+      cursor: pointer;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.25);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .scroll-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
     }
 
     .scroll-button:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(118, 75, 162, 0.3);
+      transform: translateY(1px);
+      box-shadow: 0 2px 10px rgba(118, 75, 162, 0.3);
     }
   </style>
-
   <script>
-    // Array of image sources
+    // First Image Gallery Array and Functions
     const images = [
-    { src: "static/images/graphic abs.png", name: "Graphical Abstract" },
-    { src: "static/images/Comparison between our work and the existing surveys.png", name: "Fig. 1 Comparison between our work and the existing surveys" },
-
-      { src: "static/images/Operational architecture of LLM agents [36].jpg", name: "Fig. 2 Operational architecture of LLM agents [36]" },
-      { src: "static/images/Summary of the existing research in terms of AI agents for blockchain.jpg", name: "Fig. 3 Summary of the existing research in terms of AI agents for blockchain" },
-
-      { src: "static/images/An overview of blockchain architecture.jpg", name: "Fig. 4 An overview of blockchain architecture" },
-      { src: "static/images/Summary of the existing research in terms of blockchain for AI agents.jpg", name: "Fig. 5 Summary of the existing research in terms of blockchain for AI agents" },
-
-      { src: "static/images/A collaborative framework between blockchain and AI agents.jpg", name: "Fig. 6 A collaborative framework between blockchain and AI agents" },
-      { src: "static/images/Summary of application and use case scenarios.jpg", name: "Fig. 7 Summary of application and use case scenarios" },
-
-      { src: "static/images/Blockchain-based governance framework for AI agents.jpg", name: "Fig. 8 Blockchain-based governance framework for AI agents" },
-      { src: "static/images/Interaction between AI agents and users in a blockchain-based DeFi environment.jpg", name: "Fig. 9 Interaction between AI agents and users in a blockchain-based DeFi environment" },
-      { src: "static/images/DAO leverages AI agents for governance and automation.jpg", name: "Fig. 10 DAO leverages AI agents for governance and automation" },
-      { src: "static/images/Blockchain and AI agent-enabled supply chain framework.jpg", name: "Fig. 11 Blockchain and AI agent-enabled supply chain framework" },
-      { src: "static/images/Hybrid quantum computing framework integrating AI agents.jpg", name: "Fig. 12 Blockchain-based Quantum Computing Framework integrating AI Agents" }
+      { src: "static/images/graphic abs.png", name: "Graphical Abstract" },
+      { src: "static/images/Operational architecture of LLM agents [36].jpg", name: "Fig. 1 Operational architecture of LLM agents [36]" },
+      { src: "static/images/An overview of blockchain architecture.jpg", name: "Fig. 2 An overview of blockchain architecture" },
+      { src: "static/images/A collaborative framework between blockchain and AI agents.jpg", name: "Fig. 3 A collaborative framework between blockchain and AI agents" },
+      { src: "static/images/Blockchain-based governance framework for AI agents.jpg", name: "Fig. 4 Blockchain-based governance framework for AI agents" },
+      { src: "static/images/Interaction between AI agents and users in a blockchain-based DeFi environment.jpg", name: "Fig. 5 Interaction between AI agents and users in a blockchain-based DeFi environment" },
+      { src: "static/images/DAO leverages AI agents for governance and automation.jpg", name: "Fig. 6 DAO leverages AI agents for governance and automation" },
+      { src: "static/images/Blockchain and AI agent-enabled supply chain framework.jpg", name: "Fig. 7 Blockchain and AI agent-enabled supply chain framework" },
+      { src: "static/images/Hybrid quantum computing framework integrating AI agents.jpg", name: "Fig. 8 Blockchain-based Quantum Computing Framework integrating AI Agents" }
     ];
-
     let currentImageIndex = 0;
-
     function showNextImage() {
-      // Hide the current image
       document.getElementById('currentImage').style.display = 'none';
       document.getElementById('imageName').style.display = 'none';
-
-      // Increment the image index and loop back to the first image if needed
       currentImageIndex = (currentImageIndex + 1) % images.length;
-
-      // Show the next image
       const image = document.getElementById('currentImage');
       image.src = images[currentImageIndex].src;
       image.style.display = 'block';
-
-      // Show the name below the image
       const imageName = document.getElementById('imageName');
       imageName.textContent = images[currentImageIndex].name;
       imageName.style.display = 'block';
     }
-
     function showPreviousImage() {
-      // Hide the current image
       document.getElementById('currentImage').style.display = 'none';
       document.getElementById('imageName').style.display = 'none';
-
-      // Decrement the image index and loop back to the last image if needed
       currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-
-      // Show the previous image
       const image = document.getElementById('currentImage');
       image.src = images[currentImageIndex].src;
       image.style.display = 'block';
-
-      // Show the name below the image
       const imageName = document.getElementById('imageName');
       imageName.textContent = images[currentImageIndex].name;
       imageName.style.display = 'block';
     }
-
-    // Show the first image on page load
-    window.onload = function() {
+    window.addEventListener("load", function() {
       const image = document.getElementById('currentImage');
       image.src = images[currentImageIndex].src;
       image.style.display = 'block';
-
       const imageName = document.getElementById('imageName');
       imageName.textContent = images[currentImageIndex].name;
       imageName.style.display = 'block';
-    };
-  </script>
+    });
+    
+    // Second Image Gallery Array and Functions (New Section)
+    const images2 = [
+    { src: "static/images/compare with other surveys.png", name: "Table 1 Comparison between our work and the existing surveys" },
+    { src: "static/images/ai agents for blockchain.png", name: "Table 2 Summary of the existing research in terms of AI agents for blockchain" },
+    { src: "static/images/blockchain for ai.png", name: "Table 3 Summary of the existing research in terms of blockchain for AI agents" },
+    { src: "static/images/use cases.png", name: "Table 4 Summary of application and use case scenarios" },
+    { src: "static/images/ai agent blockchain fusion.png", name: "Table 5 Comparative analysis of AI agent and blockchain fusion solutions" },
 
+    ];
+    let currentImageIndex2 = 0;
+    function showNextImage2() {
+      document.getElementById('secondCurrentImage').style.display = 'none';
+      document.getElementById('secondImageName').style.display = 'none';
+      currentImageIndex2 = (currentImageIndex2 + 1) % images2.length;
+      const image = document.getElementById('secondCurrentImage');
+      image.src = images2[currentImageIndex2].src;
+      image.style.display = 'block';
+      const imageName = document.getElementById('secondImageName');
+      imageName.textContent = images2[currentImageIndex2].name;
+      imageName.style.display = 'block';
+    }
+    function showPreviousImage2() {
+      document.getElementById('secondCurrentImage').style.display = 'none';
+      document.getElementById('secondImageName').style.display = 'none';
+      currentImageIndex2 = (currentImageIndex2 - 1 + images2.length) % images2.length;
+      const image = document.getElementById('secondCurrentImage');
+      image.src = images2[currentImageIndex2].src;
+      image.style.display = 'block';
+      const imageName = document.getElementById('secondImageName');
+      imageName.textContent = images2[currentImageIndex2].name;
+      imageName.style.display = 'block';
+    }
+    window.addEventListener("load", function() {
+      const image2 = document.getElementById('secondCurrentImage');
+      image2.src = images2[currentImageIndex2].src;
+      image2.style.display = 'block';
+      const imageName2 = document.getElementById('secondImageName');
+      imageName2.textContent = images2[currentImageIndex2].name;
+      imageName2.style.display = 'block';
+    });
+  </script>
 </head>
 <body>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">AI Agents Meet Blockchain: A Survey on Secure and Scalable Collaboration for Multi-Agents</h1>
-          <h2 class="subtitle">Empowering Decentralized Intelligence in the Web3 Era</h2>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="http://dx.doi.org/10.3390/fi17020057" target="_blank"
-                class="external-link button is-normal is-rounded is-dark">
-                <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                <span>Full Text</span>
-                </a>
-              </span>
-              <!-- New button added next to the Full Text button -->
-              <span class="link-block">
-                <a href="https://github.com/sangeen28/karim2025ai/blob/main/karim2025ai.pdf" target="_blank"
-                class="external-link button is-normal is-rounded is-dark">
-                <span class="icon"><i class="fas fa-link"></i></span>
-                <span>Slide</span>
-                </a>
-              </span>
+            <h1 class="title is-1 publication-title">AI Agents Meet Blockchain: A Survey on Secure and Scalable Collaboration for Multi-Agents</h1>
+            <h2 class="subtitle">Empowering Decentralized Intelligence in the Web3 Era</h2>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="http://dx.doi.org/10.3390/fi17020057" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Full Text</span>
+                  </a>
+                </span>
+                <!-- New button added next to the Full Text button -->
+                <span class="link-block">
+                  <a href="https://github.com/sangeen28/karim2025ai/blob/main/karim2025ai.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-link"></i></span>
+                  <span>Slide</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>In recent years, the interplay between AI agents and blockchain has enabled secure and scalable collaboration among multi-agent systems, promoting unprecedented levels of autonomy and interoperability. AI agents play a vital role in facilitating complex decision making and improving operational efficiency in blockchain systems. This collaborative synergy is particularly evident in how multi-agent systems collectively tackle complex tasks to ensure seamless integration within these frameworks. While significant efforts have been made to integrate AI agents and blockchain, most studies overlook the broader potential of AI agents in addressing challenges such as interoperability, scalability, and privacy issues. In this paper, we bridge these gaps by illustrating the interplay between AI agents and blockchain. Specifically, we explore how AI agents enhance decentralized systems and examine blockchain’s role in enabling secure and scalable collaboration. Furthermore, we categorize practical applications across domains, such as Web3, decentralized finance (DeFi), asset management, and autonomous systems, providing practical insights and real-world use cases. Additionally, we identify key research challenges, including the complexities of multi-agent coordination, interoperability across diverse systems, and privacy maintenance in decentralized frameworks. Finally, we offer future directions in terms of governance, sovereignty, computation, and interpretability to promote a secure and responsible ecosystem.</p>
+  </section>
+  
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>In recent years, the interplay between AI agents and blockchain has enabled secure and scalable collaboration among multi-agent systems, promoting unprecedented levels of autonomy and interoperability. AI agents play a vital role in facilitating complex decision making and improving operational efficiency in blockchain systems. This collaborative synergy is particularly evident in how multi-agent systems collectively tackle complex tasks to ensure seamless integration within these frameworks. While significant efforts have been made to integrate AI agents and blockchain, most studies overlook the broader potential of AI agents in addressing challenges such as interoperability, scalability, and privacy issues. In this paper, we bridge these gaps by illustrating the interplay between AI agents and blockchain. Specifically, we explore how AI agents enhance decentralized systems and examine blockchain’s role in enabling secure and scalable collaboration. Furthermore, we categorize practical applications across domains, such as Web3, decentralized finance (DeFi), asset management, and autonomous systems, providing practical insights and real-world use cases. Additionally, we identify key research challenges, including the complexities of multi-agent coordination, interoperability across diverse systems, and privacy maintenance in decentralized frameworks. Finally, we offer future directions in terms of governance, sovereignty, computation, and interpretability to promote a secure and responsible ecosystem.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+  </section>
+  <!-- End paper abstract -->
 
-<!-- Image Gallery Section -->
+<!-- Existing Image Gallery Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="image-gallery">
@@ -275,13 +283,28 @@
         <img id="currentImage" alt="Gallery Image">
         <div class="image-name" id="imageName">Image Name</div>
       </div>
-      <!-- Left and Right Arrow buttons -->
       <button class="arrow-left" onclick="showPreviousImage()">&#10094;</button>
       <button class="arrow-right" onclick="showNextImage()">&#10095;</button>
     </div>
   </div>
 </section>
-<!-- End Image Gallery Section -->
+<!-- End Existing Image Gallery Section -->
+
+<!-- New Image Gallery Section (Second Gallery) -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="image-gallery">
+      <div class="image-container">
+        <img id="secondCurrentImage" alt="Second Gallery Image">
+        <div class="image-name" id="secondImageName">Image Name</div>
+      </div>
+      <button class="arrow-left" onclick="showPreviousImage2()">&#10094;</button>
+      <button class="arrow-right" onclick="showNextImage2()">&#10095;</button>
+    </div>
+  </div>
+</section>
+<body>
+
 
 <!-- Brief Summary Section -->
 <section class="section">
