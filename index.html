@@ -39,7 +39,7 @@
       height: auto;
       max-height: 1500px;
       margin-top: 20px;
-      overflow: hidden;
+      overflow: visible;
       position: relative;
     }
 
@@ -78,11 +78,11 @@
     }
 
     .arrow-left {
-      left: 10px;
+      left: -40px;
     }
 
     .arrow-right {
-      right: 10px;
+      right: -40px;
     }
 
     .arrow-left:hover, .arrow-right:hover {
@@ -146,19 +146,23 @@
   <script>
     // Array of image sources
     const images = [
-      { src: "static/images/Operational architecture of LLM agents [36].jpg", name: "Fig. 1 Operational architecture of LLM agents [36]" },
-      { src: "static/images/An overview of blockchain architecture.jpg", name: "Fig. 2 An overview of blockchain architecture" },
-      { src: "static/images/A collaborative framework between blockchain and AI agents.jpg", name: "Fig. 3 A collaborative framework between blockchain and AI agents" },
-      { src: "static/images/Blockchain-based governance framework for AI agents.jpg", name: "Fig. 4 Blockchain-based governance framework for AI agents" },
-      { src: "static/images/Interaction between AI agents and users in a blockchain-based DeFi environment.jpg", name: "Fig. 5 Interaction between AI agents and users in a blockchain-based DeFi environment" },
-      { src: "static/images/DAO leverages AI agents for governance and automation.jpg", name: "Fig. 6 DAO leverages AI agents for governance and automation" },
-      { src: "static/images/Blockchain and AI agent-enabled supply chain framework.jpg", name: "Fig. 7 Blockchain and AI agent-enabled supply chain framework" },
-      { src: "static/images/Comparison between our work and the existing surveys.png", name: "Fig. 8 Comparison between our work and the existing surveys" },
-      { src: "static/images/Summary of the existing research in terms of AI agents for blockchain.jpg", name: "Fig. 9. Summary of the existing research in terms of AI agents for blockchain" },
-      { src: "static/images/Summary of the existing research in terms of blockchain for AI agents.jpg", name: "Fig. 10 Summary of the existing research in terms of blockchain for AI agents" },
-      { src: "static/images/Summary of application and use case scenarios.jpg", name: "Fig. 11 Summary of application and use case scenarios" },
-      { src: "static/images/Hybrid quantum computing framework integrating AI agents.jpg", name: "Fig. 12 Blockchain-based Quantum Computing Framework integrating AI Agents" },
-      { src: "static/images/graphic abs.png", name: "Fig. 13 Graphical Abstract" }
+    { src: "static/images/graphic abs.png", name: "Graphical Abstract" },
+    { src: "static/images/Comparison between our work and the existing surveys.png", name: "Fig. 1 Comparison between our work and the existing surveys" },
+
+      { src: "static/images/Operational architecture of LLM agents [36].jpg", name: "Fig. 2 Operational architecture of LLM agents [36]" },
+      { src: "static/images/Summary of the existing research in terms of AI agents for blockchain.jpg", name: "Fig. 3 Summary of the existing research in terms of AI agents for blockchain" },
+
+      { src: "static/images/An overview of blockchain architecture.jpg", name: "Fig. 4 An overview of blockchain architecture" },
+      { src: "static/images/Summary of the existing research in terms of blockchain for AI agents.jpg", name: "Fig. 5 Summary of the existing research in terms of blockchain for AI agents" },
+
+      { src: "static/images/A collaborative framework between blockchain and AI agents.jpg", name: "Fig. 6 A collaborative framework between blockchain and AI agents" },
+      { src: "static/images/Summary of application and use case scenarios.jpg", name: "Fig. 7 Summary of application and use case scenarios" },
+
+      { src: "static/images/Blockchain-based governance framework for AI agents.jpg", name: "Fig. 8 Blockchain-based governance framework for AI agents" },
+      { src: "static/images/Interaction between AI agents and users in a blockchain-based DeFi environment.jpg", name: "Fig. 9 Interaction between AI agents and users in a blockchain-based DeFi environment" },
+      { src: "static/images/DAO leverages AI agents for governance and automation.jpg", name: "Fig. 10 DAO leverages AI agents for governance and automation" },
+      { src: "static/images/Blockchain and AI agent-enabled supply chain framework.jpg", name: "Fig. 11 Blockchain and AI agent-enabled supply chain framework" },
+      { src: "static/images/Hybrid quantum computing framework integrating AI agents.jpg", name: "Fig. 12 Blockchain-based Quantum Computing Framework integrating AI Agents" }
     ];
 
     let currentImageIndex = 0;
